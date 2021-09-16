@@ -1,0 +1,13 @@
+/somodule.backend/.idea
+/somodule.backend/SOModule.API/bin
+/somodule.backend/SOModule.API/obj
+/somodule.backend/SOModule.Application/bin
+/somodule.backend/SOModule.Application/obj
+/somodule.backend/SOModule.Domain/bin
+/somodule.backend/SOModule.Domain/obj
+/somodule.backend/SOModule.Domain.Core/bin
+/somodule.backend/SOModule.Domain.Core/obj
+/somodule.backend/SOModule.Domain.Services/bin
+/somodule.backend/SOModule.Domain.Services/obj
+/somodule.backend/SOModule.Infrastructure/bin
+/somodule.backend/SOModule.Infrastructure/obj
