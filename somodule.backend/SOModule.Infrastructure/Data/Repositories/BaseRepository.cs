@@ -19,6 +19,7 @@ namespace SOModule.Infrastructure.Data.Repositories
         {
             try
             {
+                _context.Entry(entity).Property("CreatedAt").CurrentValue = DateTime.Now;
                 _context.Entry(entity).Property("IsActive").CurrentValue = true;
                 _context.Set<TEntity>().Add(entity);
                 _context.SaveChanges();
@@ -47,6 +48,7 @@ namespace SOModule.Infrastructure.Data.Repositories
         {
             try
             {
+                _context.Entry(entity).Property("UpdatedAt").CurrentValue = DateTime.Now;
                 _context.Entry(entity).State = EntityState.Modified;
                 _context.SaveChanges();
             }

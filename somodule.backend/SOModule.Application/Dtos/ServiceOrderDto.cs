@@ -10,6 +10,7 @@ namespace SOModule.Application.Dtos
         public string CustomerCnpj { get; set; }
         public string CustomerName { get; set; }
         public string ProfessionalCpf { get; set; }
+        public string ProfessionalName { get; set; }
         public DateTime ExecutionDate { get; set; }
         public decimal ServiceValue { get; set; }
 

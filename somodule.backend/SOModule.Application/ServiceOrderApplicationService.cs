@@ -20,28 +20,14 @@ namespace SOModule.Application
             _mapper = mapper;
         }
         
-        public bool Add(ServiceOrderDto serviceOrderDto)
+        public void Add(ServiceOrderDto serviceOrderDto)
         {
-            if (ValidateEntity(serviceOrderDto))
-            {
-                return false;
-            }
-            
             _serviceOrderService.Add(_mapper.Map<ServiceOrder>(serviceOrderDto));
-            
-            return true;
         }
 
-        public bool Update(ServiceOrderDto serviceOrderDto)
+        public void Update(ServiceOrderDto serviceOrderDto)
         {
-            if (ValidateEntity(serviceOrderDto))
-            {
-                return false;
-            }
-            
             _serviceOrderService.Update(_mapper.Map<ServiceOrder>(serviceOrderDto));
-            
-            return true;
         }
 
         public void Remove(int id)
@@ -57,22 +43,6 @@ namespace SOModule.Application
         public ServiceOrderDto GetById(int id)
         {
             return _mapper.Map<ServiceOrderDto>(_serviceOrderService.GetById(id));
-        }
-
-        private bool ValidateEntity(ServiceOrderDto serviceOrderDto)
-        {
-            if (serviceOrderDto.CustomerCnpj.Length != 14 ||
-                serviceOrderDto.ProfessionalCpf.Length != 11 ||
-                serviceOrderDto.CustomerName == null ||
-                serviceOrderDto.ServiceDescription == null ||
-                serviceOrderDto.ServiceValue < 0 ||
-                serviceOrderDto.ServiceOrderNumber == null
-            )
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SOModule.Domain.Core.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using SOModule.Domain.Core.Interfaces.Repositories;
 using SOModule.Domain.Models;
 
 namespace SOModule.Infrastructure.Data.Repositories

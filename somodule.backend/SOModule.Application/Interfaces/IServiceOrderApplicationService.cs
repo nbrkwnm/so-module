@@ -5,8 +5,8 @@ namespace SOModule.Application.Interfaces
 {
     public interface IServiceOrderApplicationService
     {
-        bool Add(ServiceOrderDto documentDto);
-        bool Update(ServiceOrderDto documentDto);
+        void Add(ServiceOrderDto documentDto);
+        void Update(ServiceOrderDto documentDto);
         void Remove(int id);
         IEnumerable<ServiceOrderDto> GetAll();
         ServiceOrderDto GetById(int id);

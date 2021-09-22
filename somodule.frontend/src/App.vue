@@ -4,10 +4,7 @@
       <b-button
         class="my-2 mx-1"
         id="show-btn"
-        @click="
-          $bvModal.show('forms-modal');
-          setNew(true);
-        "
+        @click="$bvModal.show('forms-modal')"
         variant="primary"
         size="sm"
         >New</b-button
@@ -15,12 +12,10 @@
       <b-button
         class="my-2 mx-1"
         id="show-btn"
-        @click="
-          $bvModal.show('forms-modal');
-          setNew(false);
-        "
+        @click="$bvModal.show('forms-edit-modal')"
         variant="warning"
         size="sm"
+        v-show="selected"
         >Edit</b-button
       >
       <b-button
@@ -43,19 +38,23 @@
     >
     </b-table>
 
-    <b-modal id="forms-modal" hide-footer
-      ><service-order-forms :serviceOrder="selected" :isNew="isNew"
+    <b-modal id="forms-modal" hide-footer><service-order-form /></b-modal>
+
+    <b-modal id="forms-edit-modal" hide-footer
+      ><service-order-edit-form :serviceOrder="selected"
     /></b-modal>
   </div>
 </template>
 
 <script>
 import api from "./api/api";
-import ServiceOrderForms from "./components/ServiceOrderForms.vue";
+import ServiceOrderForm from "./components/ServiceOrderForm.vue";
+import ServiceOrderEditForm from "./components/ServiceOrderEditForm.vue";
 
 export default {
   components: {
-    ServiceOrderForms,
+    ServiceOrderForm,
+    ServiceOrderEditForm,
   },
   data() {
     return {
@@ -75,27 +74,9 @@ export default {
           sortable: true,
         },
         {
-          key: "customerCnpj",
-          label: "Customer Document",
-          sortable: true,
-        },
-        {
           key: "customerName",
           label: "Customer Name",
           sortable: true,
-        },
-        {
-          key: "professionalCpf",
-          label: "Professional Document",
-          sortable: true,
-        },
-        {
-          key: "executionDate",
-          label: "Execution Date",
-          sortable: true,
-          formatter: (value) => {
-            return new Date(value).toLocaleDateString("pt-BR");
-          },
         },
         {
           key: "serviceValue",
@@ -107,12 +88,19 @@ export default {
               currency: "BRL",
             }),
         },
+        {
+          key: "executionDate",
+          label: "Execution Date",
+          sortable: true,
+          formatter: (value) => {
+            return new Date(value).toLocaleDateString("pt-BR");
+          },
+        },
       ],
     };
   },
   created() {
     this.getServiceOrders();
-    console.log(this.serviceOrders);
   },
   methods: {
     getServiceOrders() {
@@ -127,7 +115,6 @@ export default {
     },
     onRowSelected(item) {
       this.selected = item;
-      console.log(this.selected[0].id);
     },
     deleteServiceOrder() {
       console.log(this.selected);
@@ -142,7 +129,6 @@ export default {
     },
     setNew(value) {
       this.isNew = value;
-      console.log(this.isNew);
     },
   },
 };

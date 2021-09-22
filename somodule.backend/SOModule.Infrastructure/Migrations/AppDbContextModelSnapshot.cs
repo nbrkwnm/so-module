@@ -44,6 +44,9 @@ namespace SOModule.Infrastructure.Migrations
                     b.Property<string>("ProfessionalCpf")
                         .HasColumnType("text");
 
+                    b.Property<string>("ProfessionalName")
+                        .HasColumnType("text");
+
                     b.Property<string>("ServiceDescription")
                         .HasColumnType("text");
 
@@ -58,7 +61,7 @@ namespace SOModule.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServiceOrders");
+                    b.ToTable("TBSERVICEORDER");
                 });
 #pragma warning restore 612, 618
         }

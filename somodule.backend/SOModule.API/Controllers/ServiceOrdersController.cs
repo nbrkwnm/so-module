@@ -31,17 +31,14 @@ namespace SOModule.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] ServiceOrderDto documentDto)
+        public ActionResult Post([FromBody] ServiceOrderDto serviceOrderDto)
         {
             try
             {
-                if (documentDto == null)
+                if (serviceOrderDto == null)
                     return NotFound();
 
-                if (!_applicationservice.Add(documentDto))
-                {
-                    return BadRequest("Dados inválidos");
-                }
+                _applicationservice.Add(serviceOrderDto);
                 
                 return Ok("Ordem de Serviço cadastrado com sucesso!");
                 
@@ -54,18 +51,15 @@ namespace SOModule.API.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] ServiceOrderDto documentDto)
+        public ActionResult Put([FromBody] ServiceOrderDto serviceOrderDto)
         {
             try
             {
-                if (documentDto == null)
+                if (serviceOrderDto == null)
                     return NotFound();
                 
-                if (!_applicationservice.Update(documentDto))
-                {
-                    return BadRequest("Dados inválidos");
-                }
-                
+                _applicationservice.Update(serviceOrderDto);
+                    
                 return Ok("Ordem de Serviço atualizado com sucesso!");
             }
             catch (Exception e)

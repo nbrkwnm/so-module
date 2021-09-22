@@ -9,7 +9,7 @@ namespace SOModule.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ServiceOrders",
+                name: "TBSERVICEORDER",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -19,6 +19,7 @@ namespace SOModule.Infrastructure.Migrations
                     CustomerCnpj = table.Column<string>(type: "text", nullable: true),
                     CustomerName = table.Column<string>(type: "text", nullable: true),
                     ProfessionalCpf = table.Column<string>(type: "text", nullable: true),
+                    ProfessionalName = table.Column<string>(type: "text", nullable: true),
                     ExecutionDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ServiceValue = table.Column<decimal>(type: "numeric", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -27,14 +28,14 @@ namespace SOModule.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServiceOrders", x => x.Id);
+                    table.PrimaryKey("PK_TBSERVICEORDER", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ServiceOrders");
+                name: "TBSERVICEORDER");
         }
     }
 }
