@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SOModule.Domain.Core.Interfaces.Repositories;
+using SOModule.Domain.Models;
 
 namespace SOModule.Infrastructure.Data.Repositories
 {
@@ -14,10 +15,11 @@ namespace SOModule.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        void IBaseRepository<TEntity>.Add(TEntity entity)
+        public void Add(TEntity entity)
         {
             try
             {
+                _context.Entry(entity).Property("IsActive").CurrentValue = true;
                 _context.Set<TEntity>().Add(entity);
                 _context.SaveChanges();
             }
@@ -27,7 +29,7 @@ namespace SOModule.Infrastructure.Data.Repositories
             }
         }
 
-        void IBaseRepository<TEntity>.Remove(TEntity entity)
+        public void Remove(TEntity entity)
         {
             try
             {
@@ -41,7 +43,7 @@ namespace SOModule.Infrastructure.Data.Repositories
             }
         }
 
-        void IBaseRepository<TEntity>.Update(TEntity entity)
+        public void Update(TEntity entity)
         {
             try
             {
@@ -54,14 +56,14 @@ namespace SOModule.Infrastructure.Data.Repositories
             }
         }
 
-        IEnumerable<TEntity> IBaseRepository<TEntity>.GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
             var query = _context.Set<TEntity>().ToList();
 
             return query ?? new List<TEntity>();
         }
 
-        TEntity IBaseRepository<TEntity>.GetById(int id)
+        public TEntity GetById(int id)
         {
             var query = _context.Set<TEntity>().Find(id);
 

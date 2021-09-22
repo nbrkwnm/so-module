@@ -9,6 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SOModule.Domain.Core\SOModule.Domain.Core.csproj" />
       <ProjectReference Include="..\SOModule.Domain\SOModule.Domain.csproj" />
     </ItemGroup>
 

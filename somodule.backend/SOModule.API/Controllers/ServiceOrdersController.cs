@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SOModule.Application.Dtos;
 using SOModule.Application.Interfaces;
 
 namespace SOModule.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("so/")]
     public class ServiceOrdersController : Controller
     {
         private readonly IServiceOrderApplicationService _applicationservice;
@@ -40,8 +37,12 @@ namespace SOModule.API.Controllers
             {
                 if (documentDto == null)
                     return NotFound();
+
+                if (!_applicationservice.Add(documentDto))
+                {
+                    return BadRequest("Dados inválidos");
+                }
                 
-                _applicationservice.Add(documentDto);
                 return Ok("Ordem de Serviço cadastrado com sucesso!");
                 
             }
@@ -60,7 +61,11 @@ namespace SOModule.API.Controllers
                 if (documentDto == null)
                     return NotFound();
                 
-                _applicationservice.Update(documentDto);
+                if (!_applicationservice.Update(documentDto))
+                {
+                    return BadRequest("Dados inválidos");
+                }
+                
                 return Ok("Ordem de Serviço atualizado com sucesso!");
             }
             catch (Exception e)
@@ -70,15 +75,15 @@ namespace SOModule.API.Controllers
             }
         }
 
-        [HttpDelete()]
-        public ActionResult Delete([FromBody] ServiceOrderDto documentDto)
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
         {
             try
             {
-                if (documentDto == null)
+                if (id == 0)
                     return NotFound();
                 
-                _applicationservice.Remove(documentDto);
+                _applicationservice.Remove(id);
                 return Ok("Ordem de Serviço removido com sucesso");
             }
             catch (Exception e)

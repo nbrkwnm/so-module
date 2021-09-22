@@ -9,10 +9,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SOModule.Application\SOModule.Application.csproj" />
       <ProjectReference Include="..\SOModule.Domain.Core\SOModule.Domain.Core.csproj" />
+      <ProjectReference Include="..\SOModule.Domain.Services\SOModule.Domain.Services.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Autofac" Version="6.2.0" />
       <PackageReference Include="AutoMapper" Version="10.1.1" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />

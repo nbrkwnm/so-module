@@ -13,6 +13,5 @@ namespace SOModule.Domain.Services
         {
             _repository = repository;
         }
-
     }
 }
